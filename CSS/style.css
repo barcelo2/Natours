@@ -1,0 +1,192 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+*,
+*::after,
+*::before
+{
+    margin:0px;
+    padding:0px;
+    box-sizing: inherit;/* it will inherit everything that is in the body*/
+}
+html{
+    font-size:62.5%;
+}
+
+body{
+    font-family: "Lato",sans-serif;
+    font: weight 400;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color:#777;
+    padding:3rem; /*to show the frame of 30px around the website*/
+    box-sizing: border-box;
+}
+.header{
+    height: 95vh;
+    position: relative;
+    background-image:
+    linear-gradient(
+         to right bottom,
+         #7ed56fc2,/*click on the color to choose opacity*/
+         #28b485c5),
+    url('../img/hero.jpg');
+    background-size: cover;
+    background-position:top;/*the picture is shown on the top*/
+    clip-path: polygon(0  0, 100% 0, 100% 75vh, 0 100%);/*x y x y x y x y x from left to right y from top to bottom*/
+}
+
+.header__logo-box{
+position:absolute;
+top:4rem;
+left:4rem;
+}
+
+.header__logo{
+    height:3.5rem;
+
+}
+.header__text-box{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* +moves  from top to bottom from left to right, - on the contrary*/
+    text-align: center; /*as btn is treated as text to center it we put text align*/
+}
+.heading-primary{
+color: #ffffff;
+text-transform: uppercase;
+backface-visibility: hidden;/*to prevent shaking of elements*/
+margin-bottom: 6rem;
+}
+.heading-primary--main{
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+ /*specifying animalation name and duration*/
+    animation-name: moveInLeft; 
+    animation-duration: 1s;
+    /*animation-delay: 3s; the animation delays to appear on the screen*/
+    /*animation-iteration-count: 3; appears 3 times*/
+    animation-timing-function: ease-out;
+    
+    
+
+
+}
+.heading-primary--sub{
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation-name: moveInRight; 
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+@keyframes moveInLeft{
+    0%{
+        opacity:0;/*element is invisible*/
+        transform:translateX(-10rem) /*translateX is because starts from x and " -" because we move to the original point,i.e x*/
+
+    } /*when the animation starts*/
+
+    80%{
+        transform: translateX(1rem) /*will go to the right from where is the element now*/
+    }
+    100%{
+     opacity:1;
+     transform:translate(0)/*we do not move anything*/
+    } /*when the animation finish*/
+}
+
+
+@keyframes moveInRight{
+    0%{
+        opacity:0;/*element is invisible*/
+        transform:translateX(10rem) /*x to come from the right has to pass 100px*/
+
+    } 
+
+    80%{
+        transform: translateX(-1rem) /*will go to the left from where is the element now*/
+    }
+    100%{
+     opacity:1;
+     transform:translate(0)/*we do not move anything*/
+    } /*when the animation finish*/
+}
+
+
+@keyframes moveInButton{
+    0%{
+        opacity:0;
+        transform:translateY(3rem) 
+
+    } 
+
+    100%{
+     opacity:1;
+     transform:translate(0)/*we do not move anything*/
+    } 
+}
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /*before the button was a text and it was an inline element*/
+    border-radius: 10rem;
+    transition: all .2s; /*specify to which properties are applicable and seconds*/
+    position: relative; /*set it for pseudo elements*/
+
+}
+.btn--white{
+    background-color: #ffffff;
+    color:#777;
+}
+
+.btn:hover{
+    transform: translateY(-.3rem);/* as Y goes down and we go up => "-" */
+    box-shadow: 0 1rem 2rem rgba(0, 0,0,.2);/* 0-shadow X direction, 10px-shadow Y direction,20px-blur, color .2-opacity*/
+}
+
+.btn:active{
+    transform: translateY(-.1rem); /*we compare with initial state*/
+    box-shadow: 0 .5rem 1rem rgba(0, 0,0, 2);/*when btn clicked we want to have it closer=> Y5px and less blured 10px*/
+}
+.btn::after{
+    content: "";/*always specify content*/
+    display: inline-block;
+    height: 100%;/*means that pseudo button will have the same dimentions as the main button*/
+    width:100%;
+    border-radius: 10rem;
+    position: absolute;/*needs to be behind*/
+    top:0;
+    left:0;
+    z-index:-1;
+    transition: all .4s;
+}
+
+.btn-white::after{
+    background-color: #ffffff;
+   
+}
+
+.btn:hover::after{
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity:0; /*the element fades out*/
+}
+.btn--animated{
+    animation:moveInButton .5s ease-out .75s;/* name duration timing-function delay*/
+    animation-fill-mode: backwards; /*applies initial styles of the animation*/
+}
+
+
+
